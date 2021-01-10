@@ -1,0 +1,100 @@
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Nov 30 18:09:54 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.1 (clang-1001.0.46.4) on 30 November 2020 14:58:14
+os: Darwin-18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019; root:xnu-4903.278.12~1/RELEASE_X86_64
+nodename: MacBook-Pro-Olga.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /Users/olga/Documents/web/web_lab1/backend
+writing pidfile to /tmp/backend.pid
+detected binary path: /Users/olga/Documents/web/web_lab1/venv/bin/uwsgi
+chdir() to /Users/olga/Documents/web/web_lab1/backend/backend/
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 10240
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/backend.sock fd 3
+Python version: 3.6.7 (v3.6.7:6ec5cf24b7, Oct 20 2018, 03:02:14)  [GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.57)]
+PEP 405 virtualenv detected: /Users/olga/Documents/web/web_lab1/venv
+Set PythonHome to /Users/olga/Documents/web/web_lab1/venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7fc7eb80e000
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 801856 bytes (783 KB) for 10 cores
+*** Operational MODE: preforking ***
+ModuleNotFoundError: No module named 'backend'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 3502)
+spawned uWSGI worker 1 (pid: 3504, cores: 1)
+spawned uWSGI worker 2 (pid: 3505, cores: 1)
+spawned uWSGI worker 3 (pid: 3506, cores: 1)
+spawned uWSGI worker 4 (pid: 3507, cores: 1)
+spawned uWSGI worker 5 (pid: 3508, cores: 1)
+spawned uWSGI worker 6 (pid: 3509, cores: 1)
+spawned uWSGI worker 7 (pid: 3510, cores: 1)
+spawned uWSGI worker 8 (pid: 3511, cores: 1)
+spawned uWSGI worker 9 (pid: 3512, cores: 1)
+spawned uWSGI worker 10 (pid: 3513, cores: 1)
+...brutally killing workers...
+worker 10 buried after 1 seconds
+worker 9 buried after 1 seconds
+worker 8 buried after 1 seconds
+worker 7 buried after 1 seconds
+worker 6 buried after 1 seconds
+worker 5 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /Users/olga/Documents/web/web_lab1/backend
+closing all non-uwsgi socket fds > 2 (max_fd = 10240)...
+found fd 3 mapped to socket 0 (/tmp/backend.sock)
+running /Users/olga/Documents/web/web_lab1/venv/bin/uwsgi
+[uWSGI] getting INI configuration from /Users/olga/Documents/web/web_lab1/backend/backend_uwsgi.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Dec  7 05:09:06 2020] ***
+compiled with version: 4.2.1 Compatible Apple LLVM 10.0.1 (clang-1001.0.46.4) on 30 November 2020 14:58:14
+os: Darwin-18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019; root:xnu-4903.278.12~1/RELEASE_X86_64
+nodename: MacBook-Pro-Olga.local
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 4
+current working directory: /Users/olga/Documents/web/web_lab1/backend
+detected binary path: /Users/olga/Documents/web/web_lab1/venv/bin/uwsgi
+chdir() to /Users/olga/Documents/web/web_lab1/backend/backend/
+your processes number limit is 709
+your memory page size is 4096 bytes
+detected max file descriptor number: 10240
+lock engine: OSX spinlocks
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/backend.sock fd 3
+Python version: 3.6.7 (v3.6.7:6ec5cf24b7, Oct 20 2018, 03:02:14)  [GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.57)]
+PEP 405 virtualenv detected: /Users/olga/Documents/web/web_lab1/venv
+Set PythonHome to /Users/olga/Documents/web/web_lab1/venv
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x7fca6f813c00
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 801856 bytes (783 KB) for 10 cores
+*** Operational MODE: preforking ***
+ModuleNotFoundError: No module named 'backend'
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 3502)
+spawned uWSGI worker 1 (pid: 63229, cores: 1)
+spawned uWSGI worker 2 (pid: 63230, cores: 1)
+spawned uWSGI worker 3 (pid: 63231, cores: 1)
+spawned uWSGI worker 4 (pid: 63232, cores: 1)
+spawned uWSGI worker 5 (pid: 63233, cores: 1)
+spawned uWSGI worker 6 (pid: 63234, cores: 1)
+spawned uWSGI worker 7 (pid: 63235, cores: 1)
+spawned uWSGI worker 8 (pid: 63236, cores: 1)
+spawned uWSGI worker 9 (pid: 63237, cores: 1)
+spawned uWSGI worker 10 (pid: 63238, cores: 1)
