@@ -44,7 +44,7 @@ class Company(models.Model):
 
 class JobVacancy(models.Model):
     title = models.CharField(max_length = 100)
-    company = models.ForeignKey(Company, related_name='vacancy', on_delete=models.SET_NULL, null=True)
+    company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
     industry = models.ForeignKey('Industry', on_delete=models.SET_NULL, null=True)
     city = models.ForeignKey('City', on_delete=models.SET_NULL, null=True)
 

@@ -95,9 +95,9 @@ class CompanyTest(TestCase):
 class VacancyTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.test_company = Company.objects.create(name='test_company')
-        cls.test_industry = Industry.objects.create(name='test_industry')
-        cls.test_city = City.objects.create(name='test_city')
+        cls.test_company = Company.objects.create(name='test_vacancy')
+        cls.test_industry = Industry.objects.create(name='test_vacancy')
+        cls.test_city = City.objects.create(name='test_vacancy')
         cls.test_vacancy = JobVacancy.objects.create(
             title = 'test_vacancy',
             company = cls.test_company,

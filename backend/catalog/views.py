@@ -3,6 +3,7 @@ from rest_framework import permissions, viewsets
 
 from .serializers import CitySerializer, CompanySerializer, IndustrySerializer, VacancySerializer, ApplicationSerializer
 
+
 class CitiesAPIView(viewsets.ModelViewSet):
     queryset = City.objects.all()
     serializer_class = CitySerializer
