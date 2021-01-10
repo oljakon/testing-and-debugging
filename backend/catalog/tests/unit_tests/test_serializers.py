@@ -4,7 +4,8 @@ from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from catalog.models import City, Industry, Company, JobVacancy, Application
-from catalog.serializers import CitySerializer, CompanySerializer, IndustrySerializer, VacancySerializer, ApplicationSerializer
+from catalog.serializers import CitySerializer, CompanySerializer, IndustrySerializer, VacancySerializer, \
+    ApplicationSerializer, UserSerializer
 
 
 class CitySerializerTest(TestCase):
@@ -119,3 +120,22 @@ class ApplicationSerializerTest(TestCase):
         res_count = Application.objects.filter(applicant=self.test_user.id)
         self.assertEqual(len(res_count), 1)
 
+
+class UserSerializerTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.test_user = User.objects.create(username='test_username', email='test_email', password='test_password')
+        cls.test_user_serializer = UserSerializer(cls.test_user, context={'request': MagicMock()})
+
+    def test_contains_expected_fields(self):
+        data = self.test_user_serializer.data
+        self.assertEqual(set(data.keys()), {'url', 'username', 'email'})
+
+    def test_username_field_content(self):
+        data = self.test_user_serializer.data
+        self.assertEqual(data['username'], 'test_username')
+
+    def test_update_email_field(self):
+        self.test_user_serializer.update(self.test_user, {'email': 'test_email_new'})
+        self.test_user.refresh_from_db()
+        self.assertEqual(self.test_user.email, 'test_email_new')
