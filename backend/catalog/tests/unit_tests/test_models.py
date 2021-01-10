@@ -1,6 +1,6 @@
 from django.test import TestCase
 from catalog.models import City, Industry, Company, JobVacancy, Application
-from catalog.tests.unit.user_builder import UserBuilder
+from catalog.tests.unit_tests.user_builder import UserBuilder
 
 
 class CityTest(TestCase):
@@ -102,6 +102,7 @@ class VacancyTest(TestCase):
             title = 'test_vacancy',
             company = cls.test_company,
             industry = cls.test_industry,
+            city=cls.test_city,
             years_of_exp = '3-5',
             type = 'fulltime'
         )
@@ -118,8 +119,8 @@ class VacancyTest(TestCase):
         test_vacancy = JobVacancy.objects.get(title='test_vacancy')
         self.assertIsInstance(test_vacancy.city, City)
 
-    def test_get_vacancy_by_title(self):
-        test_vacancy_01 = City.objects.get(title='test_vacancy')
+    def test_get_vacancy(self):
+        test_vacancy_01 = JobVacancy.objects.get(title='test_vacancy')
         self.assertEqual(test_vacancy_01.title, 'test_vacancy')
 
     def test_get_not_existing_vacancy(self):

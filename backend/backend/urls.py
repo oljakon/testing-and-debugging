@@ -38,7 +38,7 @@ urlpatterns = [
     path('api-token-verify/', verify_jwt_token),
     path('api/v1/api-auth/', include('rest_framework.urls')),
     path('api/v1/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    #path('swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('api/v1/', include('catalog.urls')),
