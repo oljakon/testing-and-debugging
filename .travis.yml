@@ -1,22 +1,10 @@
 language: python
 python:
   - "3.6"
-services:
-  - postgresql
-addons:
-  postgresql: "11"
-env:
-  - DJANGO=3.1.3
 before_install:
-  - export DATABASE_URL = postgres://postgres@localhost/test_db
-  - export DJANGO_SETTINGS_MODULE=backend.settings
-  - export PYTHONPATH=$HOME/builds/oljakon/testing-and-debugging
-  - export PIP_USE_MIRRORS=true
   - cd backend
 install:
   - pip3 install -r requirements.txt
-before_script:
-  - psql -c 'create database test_db;' -U postgres
 script:
   - python3 manage.py test catalog/tests/unit_tests
   - python3 manage.py test catalog/tests/integration_tests
