@@ -8,6 +8,7 @@ router.register('industries', views.IndustriesAPIView)
 router.register('vacancies', views.VacanciesAPIView)
 router.register('cities', views.CitiesAPIView)
 router.register('applications', views.ApplicationsAPIView)
+router.register('users', views.UserViewSet)
 
 urlpatterns = router.urls
 

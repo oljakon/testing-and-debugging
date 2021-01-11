@@ -1,7 +1,7 @@
 from .models import Industry, Company, JobVacancy, Application, City
 from rest_framework import permissions, viewsets
-
-from .serializers import CitySerializer, CompanySerializer, IndustrySerializer, VacancySerializer, ApplicationSerializer
+from django.contrib.auth.models import User
+from .serializers import CitySerializer, CompanySerializer, IndustrySerializer, VacancySerializer, ApplicationSerializer, UserSerializer
 
 
 class CitiesAPIView(viewsets.ModelViewSet):
@@ -34,3 +34,9 @@ class ApplicationsAPIView(viewsets.ModelViewSet):
     serializer_class = ApplicationSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     filterset_fields = ('applicant', 'job')
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (permissions.AllowAny,)

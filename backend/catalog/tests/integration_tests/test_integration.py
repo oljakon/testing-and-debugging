@@ -1,4 +1,5 @@
 from django.test import TestCase
+from http import HTTPStatus
 from django.contrib.auth.models import User
 from catalog.models import City, Industry, Company, JobVacancy, Application
 
@@ -35,4 +36,24 @@ class VacancyIntegrationTest(TestCase):
         res_count = JobVacancy.objects.filter(industry=1)
         self.assertEqual(len(res_count), 2)
 
+
+class RegistrationTest(TestCase):
+    def test_registration_success(self):
+        user_data = {
+            'username': 'username',
+            'email': 'username@smth.com',
+            'password': 'password',
+        }
+
+        response = self.client.post('/api/v1/users/', data=user_data)
+        try:
+            created_user = User.objects.get(username=user_data['username'])
+            user_created = True
+        except User.DoesNotExist:
+            created_user = {'email': None}
+            user_created = False
+
+        self.assertEqual(response.status_code, HTTPStatus.CREATED)
+        self.assertTrue(user_created)
+        self.assertEqual(created_user.email, user_data['email'])
 
