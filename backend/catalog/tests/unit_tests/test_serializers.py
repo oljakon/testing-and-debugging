@@ -104,14 +104,14 @@ class ApplicationSerializerTest(TestCase):
         cls.test_vacancy = JobVacancy.objects.create(title='test_vacancy', city=cls.test_city, company=cls.test_company,
                                                      industry=cls.test_industry, years_of_exp='3-5', type='fulltime')
         cls.test_application = Application.objects.create(applicant=cls.test_user, job=cls.test_vacancy, applied_on='2021-01-01')
-        cls.test_vacancy_serializer = ApplicationSerializer(cls.test_application, context={'request': MagicMock()})
+        cls.test_application_serializer = ApplicationSerializer(cls.test_application, context={'request': MagicMock()})
 
     def test_included_fields(self):
-        data = self.test_vacancy_serializer.data
+        data = self.test_application_serializer.data
         self.assertEqual(set(data.keys()), {'url', 'applicant', 'job', 'applied_on'})
 
     def test_applicant_field_content(self):
-        data = self.test_vacancy_serializer.data
+        data = self.test_application_serializer.data
         self.assertEqual(data['applicant'], self.test_user.id)
 
     def test_applications_count_by_user(self):

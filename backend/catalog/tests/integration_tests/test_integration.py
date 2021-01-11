@@ -3,39 +3,30 @@ from django.contrib.auth.models import User
 from django.test.client import RequestFactory
 from rest_framework import permissions
 from catalog.models import City, Industry, Company, JobVacancy, Application
+from catalog.views import ApplicationsAPIView, CompaniesAPIView
 
 
-class VacancyIntegrationTest(TestCase):
+class ApplyTest(TestCase):
     @classmethod
     def setUpTestData(cls):
+        cls.test_user = User.objects.create(id=4, username='test_username', email='test_email', password='test_password')
         cls.test_city = City.objects.create(name='test_city')
-        cls.test_company_01 = Company.objects.create(id=1, name='test_company_01')
-        cls.test_company_02 = Company.objects.create(id=2, name='test_company_01')
-        cls.test_industry_01 = Industry.objects.create(id=1, name='test_industry_01')
-        cls.test_vacancy_01 = JobVacancy.objects.create(
-            title='test_vacancy_01',
-            city=cls.test_city,
-            company=cls.test_company_01,
-            industry=cls.test_industry_01,
-            years_of_exp='3-5',
-            type='fulltime'
-        )
-        cls.test_vacancy_02 = JobVacancy.objects.create(
-            title='test_vacancy_02',
-            city=cls.test_city,
-            company=cls.test_company_02,
-            industry=cls.test_industry_01,
-            years_of_exp='3-5',
-            type='fulltime'
-        )
+        cls.test_company = Company.objects.create(name='test_company')
+        cls.test_industry = Industry.objects.create(name='test_industry')
+        cls.test_vacancy = JobVacancy.objects.create(id=4,title='test_vacancy', city=cls.test_city, company=cls.test_company,
+                                                     industry=cls.test_industry, years_of_exp='3-5', type='fulltime')
 
-    def test_get_vacancy_by_company(self):
-        res_count = JobVacancy.objects.filter(company=1)
-        self.assertEqual(len(res_count), 1)
+    def test_apply(self):
+        self.client.force_login(self.test_user)
 
-    def test_get_vacancy_by_industry(self):
-        res_count = JobVacancy.objects.filter(industry=1)
-        self.assertEqual(len(res_count), 2)
+        application_data = {
+            'applicant': '/api/v1/users/4/',
+            'job': '/api/v1/vacancies/4/',
+            'applied_on': '2021-01-01',
+        }
+
+        response = self.client.post('/api/v1/applications/', data=application_data)
+        self.assertEqual(response.status_code, 201)
 
 
 class RegistrationTest(TestCase):
@@ -61,19 +52,19 @@ class RegistrationTest(TestCase):
 
 class PermissionTest(TestCase):
     def test_authenticated_permisiion(self):
-        authenticated_user = User.objects.create(email='authenticated@gsmth.com', password='password03', is_staff=False)
+        authenticated_user = User.objects.create(email='authenticated@smth.com', password='password03', is_staff=False)
         factory = RequestFactory()
         request = factory.post('/api/v1/applications')
         request.user = authenticated_user
         permission = permissions.IsAuthenticatedOrReadOnly()
-        has_permission = permission.has_permission(request, None)
+        has_permission = permission.has_permission(request, ApplicationsAPIView)
         self.assertTrue(has_permission)
 
     def test_admin_permisiion(self):
-        admin_user = User.objects.create(email='admin@gsmth.com', password='password02', is_staff=True)
+        admin_user = User.objects.create(email='admin@smth.com', password='password02', is_staff=True)
         factory = RequestFactory()
         request = factory.post('/api/v1/companies')
         request.user = admin_user
         permission = permissions.IsAdminUser()
-        has_permission = permission.has_permission(request, None)
+        has_permission = permission.has_permission(request, CompaniesAPIView)
         self.assertTrue(has_permission)

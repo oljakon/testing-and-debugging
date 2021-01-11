@@ -1,7 +1,13 @@
 language: python
 python:
   - "3.6"
+addons:
+  postgresql: "11"
+services:
+  - postgresql
 before_install:
+  - psql -c 'create database vacancy;' -U postgres
+  - psql -c 'create user postgres with password '12';' -U postgres
   - cd backend
 install:
   - pip3 install -r requirements.txt
