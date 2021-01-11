@@ -139,7 +139,7 @@ class ApplicationTest(TestCase):
     def setUpTestData(cls):
         cls.test_user_01 = UserBuilder('test_username01').with_password('test_password02').build()
         cls.test_vacancy = JobVacancy.objects.create(title='test_vacancy')
-        cls.test_application = Application.objects.create(applicant=cls.test_user_01, job=cls.test_vacancy)
+        cls.test_application = Application.objects.create(id=1, applicant=cls.test_user_01, job=cls.test_vacancy)
 
     def test_get_application(self):
         test_application = Application.objects.get(id=1)

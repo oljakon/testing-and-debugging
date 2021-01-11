@@ -9,9 +9,9 @@ class VacancyIntegrationTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.test_city = City.objects.create(name='test_city')
-        cls.test_company_01 = Company.objects.create(name='test_company_01')
-        cls.test_company_02 = Company.objects.create(name='test_company_01')
-        cls.test_industry_01 = Industry.objects.create(name='test_industry_01')
+        cls.test_company_01 = Company.objects.create(id=1, name='test_company_01')
+        cls.test_company_02 = Company.objects.create(id=2, name='test_company_01')
+        cls.test_industry_01 = Industry.objects.create(id=1, name='test_industry_01')
         cls.test_vacancy_01 = JobVacancy.objects.create(
             title='test_vacancy_01',
             city=cls.test_city,
