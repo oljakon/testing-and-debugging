@@ -1,6 +1,7 @@
 from django.test import TestCase
-from http import HTTPStatus
 from django.contrib.auth.models import User
+from django.test.client import RequestFactory
+from rest_framework import permissions
 from catalog.models import City, Industry, Company, JobVacancy, Application
 
 
@@ -53,7 +54,26 @@ class RegistrationTest(TestCase):
             created_user = {'email': None}
             user_created = False
 
-        self.assertEqual(response.status_code, HTTPStatus.CREATED)
+        self.assertEqual(response.status_code, 201)
         self.assertTrue(user_created)
         self.assertEqual(created_user.email, user_data['email'])
 
+
+class PermissionTest(TestCase):
+    def test_authenticated_permisiion(self):
+        authenticated_user = User.objects.create(email='authenticated@gsmth.com', password='password03', is_staff=False)
+        factory = RequestFactory()
+        request = factory.post('/api/v1/applications')
+        request.user = authenticated_user
+        permission = permissions.IsAuthenticatedOrReadOnly()
+        has_permission = permission.has_permission(request, None)
+        self.assertTrue(has_permission)
+
+    def test_admin_permisiion(self):
+        admin_user = User.objects.create(email='admin@gsmth.com', password='password02', is_staff=True)
+        factory = RequestFactory()
+        request = factory.post('/api/v1/companies')
+        request.user = admin_user
+        permission = permissions.IsAdminUser()
+        has_permission = permission.has_permission(request, None)
+        self.assertTrue(has_permission)
