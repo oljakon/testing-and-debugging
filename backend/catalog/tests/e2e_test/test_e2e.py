@@ -1,8 +1,6 @@
 from django.test import TestCase
-from http import HTTPStatus
 from django.contrib.auth.models import User
 from catalog.models import City, Industry, Company, JobVacancy, Application
-import os
 
 
 class EndToEndTest(TestCase):
@@ -20,6 +18,7 @@ class EndToEndTest(TestCase):
             years_of_exp='3-5',
             type='fulltime'
         )
+        cls.passed = 0
 
     def __get(self, model_class):
         return model_class.objects.all().first()
@@ -34,7 +33,7 @@ class EndToEndTest(TestCase):
         return self.__get(Application)
 
     def test_create_post_and_dislike(self):
-        n = 3
+        n = 100
 
         for _ in range(n):
             user_data = {
@@ -78,3 +77,8 @@ class EndToEndTest(TestCase):
             self.assertEqual(response.status_code, 204)
 
             User.objects.all().delete()
+
+            self.passed += 1
+
+    def tearDown(self):
+        print('Passed: %d' % self.passed)
