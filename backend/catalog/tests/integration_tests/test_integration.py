@@ -68,3 +68,12 @@ class PermissionTest(TestCase):
         permission = permissions.IsAdminUser()
         has_permission = permission.has_permission(request, CompaniesAPIView)
         self.assertTrue(has_permission)
+
+    def test_user_has_no_permisiion(self):
+        authenticated_user_02 = User.objects.create(email='authenticate02d@smth.com', password='password03', is_staff=False)
+        factory = RequestFactory()
+        request = factory.post('/api/v1/companies')
+        request.user = authenticated_user_02
+        permission = permissions.IsAdminUser()
+        has_permission = permission.has_permission(request, CompaniesAPIView)
+        self.assertFalse(has_permission)
