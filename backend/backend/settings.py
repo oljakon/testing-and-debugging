@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'django_filters',
     'sslserver',
     'catalog',
+    'behave_django'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +79,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -173,3 +174,9 @@ JWT_AUTH = {
 
 LOGIN_URL = 'rest_framework:login'
 LOGOUT_URL = 'rest_framework:logout'
+
+TEST_RUNNER = 'profiling.ProfilingRunner'
+TEST_PROFILE = 'profile'  # Set to a file path to create a pstats readable binary
+
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
