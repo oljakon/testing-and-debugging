@@ -177,8 +177,5 @@ JWT_AUTH = {
 LOGIN_URL = 'rest_framework:login'
 LOGOUT_URL = 'rest_framework:logout'
 
-TEST_RUNNER = 'profiling.ProfilingRunner'
-TEST_PROFILE = 'profile' # Set to a file path to create a pstats readable binary
-
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
