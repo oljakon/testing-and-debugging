@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'behave_django'
 ]
 
+LOGIN_REDIRECT_URL = '/api/v1/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -176,7 +178,7 @@ LOGIN_URL = 'rest_framework:login'
 LOGOUT_URL = 'rest_framework:logout'
 
 TEST_RUNNER = 'profiling.ProfilingRunner'
-TEST_PROFILE = 'profile'  # Set to a file path to create a pstats readable binary
+TEST_PROFILE = 'profile' # Set to a file path to create a pstats readable binary
 
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
